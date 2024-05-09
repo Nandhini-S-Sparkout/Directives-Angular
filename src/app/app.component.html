@@ -1,78 +1,87 @@
-<h1>{{title}}</h1>
+<div class="container">
 
-<ul>
-  <li *ngFor="let movie of movies">
-    {{movie.title}} - {{movie.director}}
+  <h1>{{title}}</h1>
 
-  </li>
-</ul>
+  <ul>
+    <li *ngFor="let movie of movies">
+      {{movie.title}} - {{movie.director}}
 
-<h2>Top 5 movies</h2>
-<table>
-  <thead>
-    <tr>
-      <th>S.no</th>
-      <th>
-        Title
-      </th>
-      <th>Director</th>
-      <th>cast</th>
-      <th>Release Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let movie of movies ;let i=index;let o=odd;let e=even;" [ngClass]="{'bg-danger':o,'bg-success':e}">
-      <td>{{i+1}}</td>
-      <td>{{movie.title}}</td>
-      <td>{{movie.director}}</td>
-      <td>{{movie.cast}}</td>
-      <td>{{movie.releaseDate}}</td>
-    </tr>
-  </tbody>
-</table>
-Number:<input type="text" [(ngModel)]="number">
+    </li>
+  </ul>
+
+  <h2>Top 5 movies</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>S.no</th>
+        <th>
+          Title
+        </th>
+        <th>Director</th>
+        <th>cast</th>
+        <th>Release Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies ;let i=index;let o=odd;let e=even;" [ngClass]="{'bg-danger':o,'bg-success':e}">
+        <td>{{i+1}}</td>
+        <td>{{movie.title}}</td>
+        <td>{{movie.director}}</td>
+        <td>{{movie.cast}}</td>
+        <td>{{movie.releaseDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div>
+    <h3>ngSwitch concept</h3>
+    <label>Number:</label>
+    <input type="text" [(ngModel)]="number" placeholder="type one to five in words ">
 
 
-<div [ngSwitch]="number">
-  <h1 *ngSwitchCase="'one'">one</h1>
-  <h1 *ngSwitchCase="'two'">two</h1>
-  <h1 *ngSwitchCase="'three'">three</h1>
-  <h1 *ngSwitchCase="'four'">four</h1>
-  <h1 *ngSwitchCase="'five'">five</h1>
-  <h1 *ngSwitchDefault="invalid number">invalid number</h1>
+    <div [ngSwitch]="number">
+      <h1 *ngSwitchCase="'one'">one</h1>
+      <h1 *ngSwitchCase="'two'">two</h1>
+      <h1 *ngSwitchCase="'three'">three</h1>
+      <h1 *ngSwitchCase="'four'">four</h1>
+      <h1 *ngSwitchCase="'five'">five</h1>
+      <h6 *ngSwitchDefault="invalid number">invalid number</h6>
+    </div>
+    <h6>Example of NgIf</h6>
+    <p *ngIf="result;then thenBlock;else elseBlock">Text is shows</p>
+    <ng-template #thenBlock>
+      Text condition is true
+
+    </ng-template>
+    <ng-template #elseBlock>
+      Text is rendered when condtion is false
+
+    </ng-template>
+    <div>
+      show<input type="checkbox" [(ngModel)]="result">
+    </div>
+    <p *ngIf="result2;else elseBlock">shows condition is checked</p>
+    <ng-template #elseBlock>shows condtion is false</ng-template>
+  </div>
+
+
+
+  <!--ng style-->
+  <div class="content">
+    <button [ngStyle]="{'font-size.px':20,'font-style':'italic','color':'red'}">ngStyle</button><br><br>
+    <button [ngStyle]="AddStyle()">ngstyle option 2</button>
+    <br>
+    <br>
+    content_copy
+    <some-element [ngClass]="'first second'">...</some-element>
+    <br>
+    <some-element [ngClass]="['first', 'second']">array values</some-element><br>
+
+    <some-element [ngClass]="{'first': true, 'second': true, 'third': false}">object values</some-element>
+
+  </div>
+  <br>
+
+  <div appChangeMe>custom directive</div>
+
 </div>
-<h6>Example of NgIf</h6>
-<p *ngIf="result;then thenBlock;else elseBlock">Text is shows</p>
-<ng-template #thenBlock>
-  Text condition is true
-
-</ng-template>
-<ng-template #elseBlock>
-Text is rendered when condtion is false
-
-</ng-template>
-<div>
-  show<input type="checkbox" [(ngModel)]="result">
-</div>
-<p *ngIf="result2;else elseBlock">shows condition is checked</p>
-<ng-template #elseBlock>shows condtion is false</ng-template>
-
-
-<!--ng style-->
-<div class="content">
-  <button [ngStyle]="{'font-size.px':20,'font-style':'italic','color':'red'}">ngStyle</button>
-<button [ngStyle]="AddStyle()">ngstyle option 2</button>
-<br>
-<br>
-content_copy
-<some-element [ngClass]="'first second'">...</some-element>
-<br>
-<some-element [ngClass]="['first', 'second']">array values</some-element><br>
-
-<some-element [ngClass]="{'first': true, 'second': true, 'third': false}">object values</some-element>
-
-</div>
-<br>
-
-<div appChangeMe>custom directive</div> 
-
